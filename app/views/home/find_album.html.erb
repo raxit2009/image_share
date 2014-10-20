@@ -1,0 +1,12 @@
+<%= form_tag  find_album_path, :method => :post  do %>
+	<%= text_field_tag :album_name %>
+	<%= submit_tag "Submit",:class=>'btn btn-primary'%>
+<%end%>
+<% @find_album.each do |album| %>
+	<h3><%= album.name %></h3>
+	<%album.images.each do |image|%>
+		<%= image_tag image.photo.url(:thumb) %>
+	<%end%>
+<%end%>
+<br>
+<%= link_to "Home", root_url %>
