@@ -25,17 +25,21 @@
   </div>
   <div class="control-group">
     <%= f.fields_for :images do |ph| %>
-      <%= ph.label :photo %><br>
+      <br>
       <div class="controls">
-        <%= ph.file_field :photo, :class => 'control-label' %>
-        <%= ph.hidden_field :user_id, :value => current_user.id %>
-        <%= image_tag ph.object.photo.url(:thumb) %>
+        <div style = "width: 50%;float:left;">
+          <%= ph.file_field :photo, :class => 'control-label' %>
+          <%= ph.hidden_field :user_id, :value => current_user.id %>
+        </div>
+        <div>
+          <%= image_tag ph.object.photo.url(:thumb) %>
+        </div>
       </div>
     <%end%>
     <%= error_span(@album[:user_id]) %>
   </div>
 
-
+  <br><br>
   <%= f.submit nil, :class => 'btn btn-primary' %>
   <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
             albums_path, :class => 'btn btn-default' %>
