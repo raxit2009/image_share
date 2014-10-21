@@ -1,12 +1,25 @@
-<%= form_tag  find_album_path, :method => :post  do %>
-	<%= text_field_tag :album_name %>
-	<%= submit_tag "Submit",:class=>'btn btn-primary'%>
-<%end%>
-<% @find_album.each do |album| %>
-	<h3><%= album.name %></h3>
-	<%album.images.each do |image|%>
-		<%= image_tag image.photo.url(:thumb) %>
-	<%end%>
-<%end%>
-<br>
-<%= link_to "Home", root_url %>
+<div class = "main-page">
+	<div class = "search-form" style = "width: 82%;">
+		<%= form_tag  find_album_path, :method => :post  do %>
+			<%= text_field_tag :album_name %>
+			<%= submit_tag "Submit",:class=>'btn btn-primary'%>
+		<%end%>
+	</div>
+	<div class = "search-album-url">
+		<%= link_to "Home", root_path,:class=>'btn btn-primary', :id => "search-submit" %><br>
+	</div>
+</div>
+<div style = "margin-left:70px">
+	<div class= "last_images" style = "float: left;">
+		<% @find_album.each do |album| %>
+			<h3><%= album.name %></h3>
+			<%album.images.each do |image|%>
+				<div class= "last_images" style = "float: left;width: 16%;">
+					<%= image_tag image.photo.url(:thumb), :width => "150px", :height => "100px" %>
+					<h4><%= image.user.username %></h4>
+				</div>
+			<%end%>
+			<div style = "clear: both;"></div>
+		<%end%>
+	</div>
+</div>
