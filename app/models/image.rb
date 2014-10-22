@@ -8,7 +8,7 @@ class Image < ActiveRecord::Base
 
   	def maximum_uplaod
   		find_image = Image.where("album_id = ?", album_id)
-  		unless find_image.length <= 25
+  		unless find_image.length < 25
   			errors.add("can not", "be uploaded more than 25 per Album.")
   		end
 
